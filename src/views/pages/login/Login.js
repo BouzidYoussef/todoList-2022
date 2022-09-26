@@ -17,16 +17,19 @@ import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
 
 
+
+
 const Login = () => {
+  
 
   const dataBase = [
     {
-      username : "youssef",
-      password : "123456"
+      user : "youssef",
+      pw : "123456"
     },
     {
-      username: "admin",
-      password: "admin"
+      user: "admin",
+      pw: "admin"
 
     }
   ]
@@ -37,21 +40,19 @@ const Login = () => {
 
 
   const loginClicked = () => {
-      if (username === dataBase.username.value && password === dataBase.password.value) {
+      if (username === dataBase.user.value && password === dataBase.pw.value) {
           console.log("Login Success");
           console.log("login loginStatus " + loginStatus);
 
           setloginStatus(true);
         // If login succeeds then redirect
-        props.history.push('./home') 
+        this.props.push("/dashboard")
         // 
          
       } else {
           console.log("Login Failed");
           setloginStatus(false);
           console.log("login loginStatus " + loginStatus);
-
-
 
       }
   }
@@ -97,6 +98,7 @@ const Login = () => {
                         type="submit"
                         color="primary" 
                         className="px-4"
+                        onChange={loginClicked}
                         >                    
                           Login
                         </CButton >
