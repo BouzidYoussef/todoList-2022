@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   CButton,
@@ -15,67 +15,52 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
-class Login extends Component {
-  constructor(props) {
-    super(props);
-    const users =[
-      {
-        "ID": 1,
-        "Username": "youssefbouzid@yahoo.com",
-        "Password": "123456"
-      },
-      {
-        "ID": 2,
-        "Username": "admin@yahoo.com",
-        "Password": "admin"
-      }
-    ]
-    this.state = {
-      username: '',
-      password: '',
-      loginStatus: 'not logged in',
-    };
-  
 
-  const handleUsernameChange = (event) => {
-    this.setState({
-      username: event.target.value,
-    });
-  };
 
-   const handlePasswordChange = (event) => {
-    this.setState({
-      password: event.target.value,
-    });
-  };
+const Login = () => {
 
-   const handleSubmit = (event) => {
-    var found = false;
-    event.preventDefault();
-    users.forEach((user) => {
-      // as of now checks for correct username only and not the password
-      if (user.Username == this.state.username) {
-        found = true;
-      }
-    });
-    if (found) {
-      this.setState({
-        loginStatus: 'Successfully logged in!',
-      });
-      console.log(this.props);
-      this.props.history.push('/home');
-    } else {
-      this.setState({
-        loginStatus: 'Login failed! Inavlid User/Pass',
-      });
+  const dataBase = [
+    {
+      username : "youssef",
+      password : "123456"
+    },
+    {
+      username: "admin",
+      password: "admin"
+
     }
-  };
+  ]
+
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('pass');
+  const [loginStatus, setloginStatus] = useState(true);
+
+
+  const loginClicked = () => {
+      if (username === dataBase.username.value && password === dataBase.password.value) {
+          console.log("Login Success");
+          console.log("login loginStatus " + loginStatus);
+
+          setloginStatus(true);
+        // If login succeeds then redirect
+        props.history.push('./home') 
+        // 
+         
+      } else {
+          console.log("Login Failed");
+          setloginStatus(false);
+          console.log("login loginStatus " + loginStatus);
+
+
+
+      }
   }
-  render() {
+
+  
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
       <CContainer >
-        <CRow className="justify-content-center"onSubmit={this.handleSubmit}>
+        <CRow className="justify-content-center">
           <CCol md={8}>
             <CCardGroup>
               <CCard className="p-4">
@@ -89,25 +74,21 @@ class Login extends Component {
                       <CInputGroupText >
                         <CIcon icon={cilUser} />
                       </CInputGroupText>
-                      <CFormInput 
-                      id="username"
-                      name="username"
-                      placeholder="Enter email"
-                      onChange={this.handleUsernameChange}
-                      type="email"
-                      value={this.state.username}
-                      />
+                      <CFormInput
+                      type="text" 
+                      name="username" 
+                      value={username}
+                      onChange={(event) => { setUsername(event.target.value) }}
+                     required />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
                       <CInputGroupText>
                         <CIcon icon={cilLockLocked} />
                       </CInputGroupText>
                       <CFormInput
-                        id="password"
-                        name="password"
-                        placeholder="enter your password"
-                        onChange={this.handlePasswordChange}
-                        type="password"
+                        type="password" 
+                        name="password" 
+                        onChange={(event) => { setPassword(event.target.value)}}
                         required/>
                     </CInputGroup>
                     <CRow>
@@ -152,6 +133,7 @@ class Login extends Component {
     </div>
   )
   }
-}
+
+
 
 export default Login
