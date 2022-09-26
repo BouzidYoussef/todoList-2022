@@ -15,7 +15,7 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
-
+import { Navigate } from 'react-router-dom'
 
 
 
@@ -135,7 +135,5 @@ const Login = () => {
     </div>
   )
   }
-
-
 
 export default Login
