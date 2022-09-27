@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import {Button, Card, Form} from "react-bootstrap"
 // import Spinner from 'react-bootstrap/Spinner'
 import "../dashboard/style.css"
-import { CFormInput, CFormLabel, CInputGroupText } from '@coreui/react'
+import { CForm, CFormInput, CFormLabel, CInputGroupText } from '@coreui/react'
 
 const Todo = ({todo, removeTodo, markTodo, i}) => {
   
@@ -28,7 +28,7 @@ const Todo = ({todo, removeTodo, markTodo, i}) => {
       setValue("");
       };
       return (
-        <Form onSubmit={handleSubmit}> 
+        <CForm onSubmit={handleSubmit}>
         <CInputGroupText>
           <CFormLabel><b>Add Todo</b></CFormLabel>
           <CFormInput type="text" className="input" value={value} onChange={e => setValue(e.target.value)} placeholder="eg: shopping etc.." required/>
@@ -36,9 +36,9 @@ const Todo = ({todo, removeTodo, markTodo, i}) => {
         <Button variant="primary mb-3" type="submit">
           Submit
         </Button>
-      </Form>
+      </CForm>
       );
-      function Todos() {
+       function Todos() {
         const [todos, setTodos] = React.useState([]);
       
           const addTodo = text =>{

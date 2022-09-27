@@ -30,7 +30,7 @@ const Login = () => {
     if (account && account.password === password) {
       localStorage.setItem("authenticated", true);
       navigate("/default");
-    }
+}
   };
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
