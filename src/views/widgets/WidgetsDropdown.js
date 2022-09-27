@@ -24,7 +24,7 @@ const WidgetsDropdown = () => {
             <>
               26K{' '}
               <span className="fs-6 fw-normal">
-                (-12.4% <CIcon icon={cilArrowBottom} />)
+                (-209.4% <CIcon icon={cilArrowBottom} />)
               </span>
             </>
           }
