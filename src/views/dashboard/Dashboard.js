@@ -12,8 +12,8 @@ const Todo = ({todo, removeTodo, markTodo, i}) => {
     <span>{todo}</span>
     <Spinner animation="border" variant="primary" size="sm" />
     <div>
-        <button variant="outline-success" onClick={() => markTodo(i)}>Done</button>{' '}
-        <button variant="outline-danger" onClick={() => removeTodo(i)}>Rejected</button>
+        <button variant="outline-success" className='action-btn' onClick={() => markTodo(i)}>Done</button>{' '}
+        <button variant="outline-danger" className='action-btn' onClick={() => removeTodo(i)}>Rejected</button>
     </div>
 </div>
     )
