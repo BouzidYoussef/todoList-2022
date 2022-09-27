@@ -185,4 +185,4 @@ WidgetsBrand.propTypes = {
   withCharts: PropTypes.bool,
 }
 
-export default WidgetsBrand
+export default WidgetsBrand;

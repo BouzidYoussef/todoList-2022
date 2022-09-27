@@ -1,13 +1,15 @@
 import React from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button, Card, Form} from "react-bootstrap";
-import Spinner from 'react-bootstrap/Spinner';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import {Button, Card, Form} from "react-bootstrap"
+import Spinner from 'react-bootstrap/Spinner'
+import "../dashboard/style.css"
+import { CFormInput, CFormLabel, CInputGroupText } from '@coreui/react'
 
 const Todo = ({todo, removeTodo, markTodo, i}) => {
         
   return (
     <div className='todo'>
-    <span>{todo.text}</span>
+    <span>{todo}</span>
     <Spinner animation="border" variant="primary" size="sm" />
     <div>
         <button variant="outline-success" onClick={() => markTodo(i)}>Done</button>{' '}
@@ -26,10 +28,10 @@ const Todo = ({todo, removeTodo, markTodo, i}) => {
       };
       return (
         <Form onSubmit={handleSubmit}> 
-        <Form.Group>
-          <Form.Label><b>Add Todo</b></Form.Label>
-          <Form.Control type="text" className="input" value={value} onChange={e => setValue(e.target.value)} placeholder="Type your task" />
-        </Form.Group>
+        <CInputGroupText>
+          <CFormLabel><b>Add Todo</b></CFormLabel>
+          <CFormInput type="text" className="input" value={value} onChange={e => setValue(e.target.value)} placeholder="Type your task" />
+        </CInputGroupText>
         <Button variant="primary mb-3" type="submit">
           Submit
         </Button>
