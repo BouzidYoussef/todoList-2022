@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {
   CButton,
   CCard,
@@ -15,58 +15,32 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
-import { Navigate } from 'react-router-dom'
-
-
 
 const Login = () => {
-  
-
-  const dataBase = [
-    {
-      user : "youssef",
-      pw : "123456"
-    },
-    {
-      user: "admin",
-      pw: "admin"
-
+  const navigate = useNavigate();
+  const [username, setusername] = useState("");
+  const [password, setpassword] = useState("");
+  const [authenticated, setauthenticated] = useState(
+    localStorage.getItem(localStorage.getItem("authenticated") || false)
+  );
+  const users = [{ username: "youssef", password: "youssef" }];
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const account = users.find((user) => user.username === username);
+    if (account && account.password === password) {
+      localStorage.setItem("authenticated", true);
+      navigate("/default");
     }
-  ]
-
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('pass');
-  const [loginStatus, setloginStatus] = useState(true);
-
-
-  const loginClicked = () => {
-      if (username === dataBase.user.value && password === dataBase.pw.value) {
-          console.log("Login Success");
-          console.log("login loginStatus " + loginStatus);
-
-          setloginStatus(true);
-        // If login succeeds then redirect
-        this.props.push("/dashboard")
-        // 
-         
-      } else {
-          console.log("Login Failed");
-          setloginStatus(false);
-          console.log("login loginStatus " + loginStatus);
-
-      }
-  }
-
-  
+  };
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
-      <CContainer >
+      <CContainer>
         <CRow className="justify-content-center">
           <CCol md={8}>
             <CCardGroup>
               <CCard className="p-4">
                 <CCardBody>
-                  <CForm>
+                  <CForm onSubmit={handleSubmit}>
                     <h1>Login</h1>
                     <p className="text-medium-emphasis">Sign In to your account</p>
                     <CInputGroup 
@@ -76,20 +50,20 @@ const Login = () => {
                         <CIcon icon={cilUser} />
                       </CInputGroupText>
                       <CFormInput
-                      type="text" 
-                      name="username" 
+                      type="text"
+                      name="Username"
                       value={username}
-                      onChange={(event) => { setUsername(event.target.value) }}
-                     required />
+                      onChange={(e) => setusername(e.target.value)}
+                      />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
                       <CInputGroupText>
                         <CIcon icon={cilLockLocked} />
                       </CInputGroupText>
                       <CFormInput
-                        type="password" 
-                        name="password" 
-                        onChange={(event) => { setPassword(event.target.value)}}
+                        type="password"
+                        name="Password"
+                        onChange={(e) => setpassword(e.target.value)}
                         required/>
                     </CInputGroup>
                     <CRow>
@@ -98,7 +72,7 @@ const Login = () => {
                         type="submit"
                         color="primary" 
                         className="px-4"
-                        onChange={loginClicked}
+                        value="Submit"
                         >                    
                           Login
                         </CButton >
