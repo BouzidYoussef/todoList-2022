@@ -23,7 +23,19 @@ const Login = () => {
   const [authenticated, setauthenticated] = useState(
     localStorage.getItem(localStorage.getItem("authenticated") || false)
   );
-  const users = [{ username: "youssef", password: "youssef" }];
+
+ 
+
+  const users = [{ 
+    username: "youssef", 
+    password: "123456",
+    authority:"user" },
+    {
+      username:"admin",
+      password:"admin",
+      authority:"admin"
+    }
+  ];
   const handleSubmit = (e) => {
     e.preventDefault();
     const account = users.find((user) => user.username === username);

@@ -2,16 +2,15 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button, Card, Form} from "react-bootstrap";
 import Spinner from 'react-bootstrap/Spinner';
-
+import "./style.css"
 
 function Todo ({todo, removeTodo, markTodo, i}){
     return(
         <div className='todo'>
-            <span>{todo.text}</span>
-            <Spinner animation="border" variant="primary" size="sm" />
+            <span >{todo.text}</span>
             <div>
-                <button variant="outline-success" onClick={() => markTodo(i)}>Done</button>{' '}
-                <button variant="outline-danger" onClick={() => removeTodo(i)}>Rejected</button>
+            <Button onClick={() => markTodo(i)}>Done</Button>{' '}
+            <Button onClick={() => removeTodo(i)}>Remove</Button>
             </div>
         </div>
     )
@@ -81,6 +80,7 @@ function Todos() {
     </div>
   )
 }
+
 
         export default Todos
 
