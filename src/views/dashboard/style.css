@@ -11,6 +11,11 @@ body{
   justify-content: left;
 }
 
+.userName{
+  display: flex;
+  justify-content: right;
+}
+
 
 .action-btn {
   appearance: button;

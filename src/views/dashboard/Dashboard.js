@@ -16,7 +16,7 @@ function Todo ({todo, removeTodo, markTodo, i}){
     return(
         <div className='todo'>
             <span >{todo.text}</span>
-            <h3>{options.value}</h3>
+            <h3 className='userName'>{options.label}</h3>
             <div>
             <Button onClick={() => markTodo(i)}>Done</Button>{' '}
             <Button onClick={() => removeTodo(i)}>Remove</Button>
@@ -26,9 +26,7 @@ function Todo ({todo, removeTodo, markTodo, i}){
 }
        function FormTodo({ addTodo }) {
         const [value, setValue] = React.useState("");
-        const options = [
-          { value:  users.authority , label: users.username },
-        ]
+        
         const handleSubmit = e => {
         e.preventDefault();
         if (!value) return;
@@ -39,7 +37,7 @@ function Todo ({todo, removeTodo, markTodo, i}){
           <Form onSubmit={handleSubmit}> 
           <Form.Group>
             <Form.Label><b>Add Todo</b></Form.Label>
-            <Select className="choices" options={options} placeholder="user" />
+            <Select className="choices" options={users.username} value={users.username} placeholder="user" />
             <Form.Control type="text" className="input" value={value} onChange={e => setValue(e.target.value)} placeholder="Type your task" />
           </Form.Group>
           <Button variant="primary mb-3" type="submit">

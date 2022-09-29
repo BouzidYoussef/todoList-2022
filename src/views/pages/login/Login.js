@@ -30,6 +30,14 @@ const Login = () => {
     username: "youssef", 
     password: "123456",
     authority:"user" },
+    { 
+      username: "ahmed", 
+      password: "123456",
+      authority:"user" },
+      { 
+        username: "sami", 
+        password: "123456",
+        authority:"user" },
     {
       username:"admin",
       password:"admin",
