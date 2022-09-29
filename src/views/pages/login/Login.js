@@ -38,7 +38,7 @@ const Login = () => {
   ];
   const handleSubmit = (e) => {
     e.preventDefault();
-    const account = users.find((user) => user.username === username);
+    const account = users.find((user) => user.username === "admin");
     if (account && account.password === password) {
       localStorage.setItem("authenticated", true);
       navigate("/default");

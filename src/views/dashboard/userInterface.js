@@ -5,30 +5,29 @@ import Spinner from 'react-bootstrap/Spinner';
 import "./style.css"
 import users from "../pages/login/Login"
 import Select from 'react-select'
+import { FormControl } from 'react-bootstrap';
 
 
 function Todo ({todo, removeTodo, markTodo, i}){
 
-
-  const options = [
-    { value:  users.authority , label: users.username },
-  ]
+  
     return(
         <div className='todo'>
             <span >{todo.text}</span>
-            <h3>{options.value}</h3>
+            <h3>New task:</h3>
             <div>
-            <Button onClick={() => markTodo(i)}>Done</Button>{' '}
-            <Button onClick={() => removeTodo(i)}>Remove</Button>
+            <FormControl type="checkbox" class="required-entry"/>
+            <label class="label">
+        <Button type="button" class="action action-show" />
+            </label>
+            <Button disabled onClick={() => removeTodo(i)}>Remove</Button>
             </div>
         </div>
     )
 }
        function FormTodo({ addTodo }) {
         const [value, setValue] = React.useState("");
-        const options = [
-          { value:  users.authority , label: users.username },
-        ]
+        
         const handleSubmit = e => {
         e.preventDefault();
         if (!value) return;
@@ -49,7 +48,7 @@ function Todo ({todo, removeTodo, markTodo, i}){
         );
       }
 
-function Todos() {
+function userInterface() {
     const [todos, setTodos] = React.useState([]);
 
       const addTodo = text =>{
@@ -94,5 +93,5 @@ function Todos() {
 }
 
 
-        export default Todos
+        export default userInterface;
 
