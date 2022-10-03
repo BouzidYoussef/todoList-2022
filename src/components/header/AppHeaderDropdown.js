@@ -23,6 +23,7 @@ import {
 import CIcon from '@coreui/icons-react'
 
 import avatar8 from './../../assets/images/avatars/user.png'
+import Todos from 'src/views/dashboard/Dashboard'
 
 const AppHeaderDropdown = () => {
   return (
@@ -50,7 +51,7 @@ const AppHeaderDropdown = () => {
           <CIcon icon={cilTask} className="me-2" />
           Tasks
           <CBadge color="danger" className="ms-2">
-            42
+            
           </CBadge>
         </CDropdownItem>
         <CDropdownItem href="#">

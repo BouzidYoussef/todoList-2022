@@ -6,7 +6,7 @@ body{
     justify-content: center;
 }
 
-.choices{
+.choices {
   display: flex;
   justify-content: left;
 }

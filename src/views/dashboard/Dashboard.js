@@ -1,22 +1,27 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button, Card, Form} from "react-bootstrap";
-import Spinner from 'react-bootstrap/Spinner';
 import "./style.css"
-import users from "../pages/login/Login"
 import Select from 'react-select'
+// import { useState } from 'react';
+
+var option = [
+  { value: 'youssef', label: 'Youssef', key:1 },
+  { value: 'ahmed', label: 'Ahmed', key:2 },
+  { value: 'mohammed', label: 'Mohammed', key:3}
+]
 
 
-function Todo ({todo, removeTodo, markTodo, i}){
 
+function Todo ({todo, removeTodo, markTodo, i, user}){
 
-  const options = [
-    { value:  users.authority , label: users.username },
-  ]
+  
+  
     return(
         <div className='todo'>
-            <span >{todo.text}</span>
-            <h3 className='userName'>{options.label}</h3>
+          <p key={user.key}>{user.n}</p> 
+            <span  key={todo.key}>{todo.text}</span>
+                      
             <div>
             <Button onClick={() => markTodo(i)}>Done</Button>{' '}
             <Button onClick={() => removeTodo(i)}>Remove</Button>
@@ -24,23 +29,52 @@ function Todo ({todo, removeTodo, markTodo, i}){
         </div>
     )
 }
-       function FormTodo({ addTodo }) {
-        const [value, setValue] = React.useState("");
+       function FormTodo({ addTodo, addUser }) {
+
         
+
+        const [value, setValue ] = React.useState("");
+        const [choice, setChoice] = React.useState("")
+
+
         const handleSubmit = e => {
         e.preventDefault();
         if (!value) return;
         addTodo(value);
         setValue("");
+       
+
         };
+
+        
+        const isChange = e => {
+          e.preventDefault();
+          if(!choice) return;
+          addUser(choice);
+          setChoice("");
+        };
+        
+
+        // const use = option.map((item) => ({
+        //   index: item.name,
+        //   value: {
+        //     ...item,
+        //     toString: () => item.id 
+        //   },
+        //   label: item.name
+        // }));
+
+       
+
         return (
           <Form onSubmit={handleSubmit}> 
           <Form.Group>
             <Form.Label><b>Add Todo</b></Form.Label>
-            <Select className="choices" options={users.username} value={users.username} placeholder="user" />
-            <Form.Control type="text" className="input" value={value} onChange={e => setValue(e.target.value)} placeholder="Type your task" />
+            <Select className="choices" options={option} onChange={this.isChange(this.choice)}
+              />          
+              <Form.Control type="text" className="input" key={option.key} value={value} onChange={e => setValue(e.target.value)} placeholder="Type your task" />
           </Form.Group>
-          <Button variant="primary mb-3" type="submit">
+          <Button variant="primary mb-3" type="submit" >
             Submit
           </Button>
         </Form>
@@ -48,16 +82,24 @@ function Todo ({todo, removeTodo, markTodo, i}){
       }
 
 function Todos() {
-    const [todos, setTodos] = React.useState([]);
 
+ 
+    const addUser = n =>{
+      const newUsers = [...users, { n }]
+      setUsers(newUsers);
+    }
+
+    const [todos, setTodos] = React.useState([]);
+    const [users, setUsers] = React.useState([])
       const addTodo = text =>{
         const newTodos = [...todos, { text }];
-        setTodos(newTodos)
+        setTodos(newTodos);
       }
 
       const markTodo = i => {
         const newTodos = [...todos];
         newTodos[i].isDone = true;
+        newUser[newTodos[i]].isDone = true
         setTodos(newTodos);
       };
 
@@ -69,13 +111,13 @@ function Todos() {
   return (
     <div className='todoList'>
         <div className='container'>
-            <FormTodo addTodo={addTodo} />
+            <FormTodo addTodo={addTodo} addUser={addUser} />
             <div>
-                {todos.map((todo, i) =>(
+                {todos.map((todo, i, user) =>(
                     <Card>
                         <Card.Body>
                             <Todo
-                            key={i}
+                            user ={user}
                             i = {i}
                             todo={todo}
                             markTodo={markTodo}

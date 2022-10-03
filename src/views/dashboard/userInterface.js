@@ -3,14 +3,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button, Card, Form} from "react-bootstrap";
 // import Spinner from 'react-bootstrap/Spinner';
 import "./style.css"
-// import users from "../pages/login/Login"
+import users from "../pages/login/Login"
 import Select from 'react-select'
 import { FormControl } from 'react-bootstrap';
 
 
 function Todo ({todo, removeTodo, markTodo, i}){
 
-  
     return(
         <div className='todo'>
             <span >{todo.text}</span>
@@ -34,11 +33,13 @@ function Todo ({todo, removeTodo, markTodo, i}){
         addTodo(value);
         setValue("");
         };
+        const Option = [users]
+
         return (
           <Form onSubmit={handleSubmit}> 
           <Form.Group>
             <Form.Label><b>Add Todo</b></Form.Label>
-            <Select className="choices"  placeholder="user" />
+            <Select className="choices"  placeholder="user" options={Option} />
             <Form.Control type="text" className="input" value={value} onChange={e => setValue(e.target.value)} placeholder="Type your task" />
           </Form.Group>
           <Button variant="primary mb-3" type="submit">
