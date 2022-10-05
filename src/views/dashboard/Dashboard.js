@@ -1,9 +1,8 @@
-import React from 'react'
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button, Card, Form} from "react-bootstrap";
-import "./style.css"
-import Select from 'react-select'
-// import { useState } from 'react';
+import "./style.css";
+import Select from 'react-select';
 
 var option = [
   { value: 'youssef', label: 'Youssef', key:1 },
@@ -12,16 +11,12 @@ var option = [
 ]
 
 
-
 function Todo ({todo, removeTodo, markTodo, i, user}){
 
-  
-  
     return(
         <div className='todo'>
-          <p key={user.key}>{user.n}</p> 
-            <span  key={todo.key}>{todo.text}</span>
-                      
+                <p key={todo.key}>{user.n}</p> 
+            <span  key={todo.key}>{todo.text}</span>      
             <div>
             <Button onClick={() => markTodo(i)}>Done</Button>{' '}
             <Button onClick={() => removeTodo(i)}>Remove</Button>
@@ -29,12 +24,12 @@ function Todo ({todo, removeTodo, markTodo, i, user}){
         </div>
     )
 }
-       function FormTodo({ addTodo, addUser }) {
+   function FormTodo({ addTodo, addUser }) {
 
         
 
-        const [value, setValue ] = React.useState("");
-        const [choice, setChoice] = React.useState("")
+  const [value, setValue ] = React.useState("");
+  const [choice, setChoice ] = React.useState("");
 
 
         const handleSubmit = e => {
@@ -42,35 +37,21 @@ function Todo ({todo, removeTodo, markTodo, i, user}){
         if (!value) return;
         addTodo(value);
         setValue("");
-       
-
+        
         };
 
-        
-        const isChange = e => {
+        var isChange = e => {
           e.preventDefault();
           if(!choice) return;
           addUser(choice);
           setChoice("");
         };
-        
-
-        // const use = option.map((item) => ({
-        //   index: item.name,
-        //   value: {
-        //     ...item,
-        //     toString: () => item.id 
-        //   },
-        //   label: item.name
-        // }));
-
-       
 
         return (
           <Form onSubmit={handleSubmit}> 
           <Form.Group>
             <Form.Label><b>Add Todo</b></Form.Label>
-            <Select className="choices" options={option} onChange={this.isChange(this.choice)}
+            <Select className="choices" options={option} onClick={e => isChange(e.target.choice)}
               />          
               <Form.Control type="text" className="input" key={option.key} value={value} onChange={e => setValue(e.target.value)} placeholder="Type your task" />
           </Form.Group>
@@ -91,7 +72,9 @@ function Todos() {
 
     const [todos, setTodos] = React.useState([]);
     const [users, setUsers] = React.useState([])
-      const addTodo = text =>{
+      
+    
+        const addTodo = text =>{
         const newTodos = [...todos, { text }];
         setTodos(newTodos);
       }
@@ -99,14 +82,13 @@ function Todos() {
       const markTodo = i => {
         const newTodos = [...todos];
         newTodos[i].isDone = true;
-        newUser[newTodos[i]].isDone = true
         setTodos(newTodos);
       };
 
       const removeTodo = i =>{
         const newTodos = [...todos];
         newTodos.splice(i, 1);
-        setTodos(newTodos)
+        setTodos(newTodos);
       };
   return (
     <div className='todoList'>
@@ -117,7 +99,7 @@ function Todos() {
                     <Card>
                         <Card.Body>
                             <Todo
-                            user ={user}
+                            user={user}
                             i = {i}
                             todo={todo}
                             markTodo={markTodo}
@@ -135,4 +117,3 @@ function Todos() {
 
 
         export default Todos
-
