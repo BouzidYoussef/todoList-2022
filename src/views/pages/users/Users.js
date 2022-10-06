@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import option from "../../dashboard/Dashboard"
+import option from "../../dashboard/Dashboard";
 
 
 

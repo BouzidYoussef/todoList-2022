@@ -11,10 +11,13 @@ var ud = v4();
 var option = [
   { value: 'youssef', label: 'Youssef', key:1 },
   { value: 'ahmed', label: 'Ahmed', key:2 },
-  { value: 'mohammed', label: 'Mohammed', key:3}
+  { value: 'mohammed', label: 'Mohammed', key:3},
+  { value: 'anis', label: 'Anis', key:4},
+  { value: 'louay', label: 'Louay', key:5},
+  { value: 'kais', label: 'Kais', key:6}
 ]
 
-function Todo ({todo, removeTodo, markTodo, i, selected}){
+function Todo ({todo, removeTodo, markTodo, i}){
           console.log(ud);
     return(
         <div className='todo'>
@@ -44,7 +47,6 @@ function Todo ({todo, removeTodo, markTodo, i, selected}){
           console.log(event)
           setSelected(event);
         };
-        
 
         return (
           <Form onSubmit={handleSubmit}> 
@@ -69,7 +71,7 @@ function Todos() {
         setTodos(newTodos);
       }
 
-        const markTodo = i => {
+        const markTodo = ud => {
         const newTodos = [...todos];
         newTodos[ud].isDone = true;
         setTodos(newTodos);
@@ -107,4 +109,4 @@ function Todos() {
 }
 
 
-        export default Todos
+        export default Todos;
