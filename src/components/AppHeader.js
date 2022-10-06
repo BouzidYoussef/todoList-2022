@@ -41,7 +41,7 @@ const AppHeader = () => {
             </CNavLink>
           </CNavItem>
           <CNavItem>
-            <CNavLink href="/users">Users</CNavLink>
+            <CNavLink to="/users" >Users</CNavLink>
           </CNavItem>
           <CNavItem>
             <CNavLink href="/tasks">Tasks</CNavLink>

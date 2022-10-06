@@ -3,6 +3,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button, Card, Form} from "react-bootstrap";
 import "./style.css";
 import Select from 'react-select';
+import  { useState } from 'react';
+import { v4 } from 'uuid'
+
+var ud = v4();
 
 var option = [
   { value: 'youssef', label: 'Youssef', key:1 },
@@ -10,13 +14,12 @@ var option = [
   { value: 'mohammed', label: 'Mohammed', key:3}
 ]
 
-
-function Todo ({todo, removeTodo, markTodo, i, user}){
-
+function Todo ({todo, removeTodo, markTodo, i, selected}){
+          console.log(ud);
     return(
         <div className='todo'>
-                <p key={todo.key}>{user.n}</p> 
-            <span  key={todo.key}>{todo.text}</span>      
+                <li className='userin' key={ud}>Task for : {todo.x}</li>   
+               <span key={ud}>{todo.text}</span>
             <div>
             <Button onClick={() => markTodo(i)}>Done</Button>{' '}
             <Button onClick={() => removeTodo(i)}>Remove</Button>
@@ -24,83 +27,71 @@ function Todo ({todo, removeTodo, markTodo, i, user}){
         </div>
     )
 }
-   function FormTodo({ addTodo, addUser }) {
+   function FormTodo({ addTodo}) {
 
-        
-
-  const [value, setValue ] = React.useState("");
-  const [choice, setChoice ] = React.useState("");
-
-
+  const [value, setValue] = useState("");
         const handleSubmit = e => {
         e.preventDefault();
+        console.log("show slected: "+selected)
+        console.log("show value: "+value)
         if (!value) return;
-        addTodo(value);
+         addTodo(value, selected);
         setValue("");
-        
         };
 
-        var isChange = e => {
-          e.preventDefault();
-          if(!choice) return;
-          addUser(choice);
-          setChoice("");
+        const [selected, setSelected] = useState();
+        const handleChange = (event) => {
+          console.log(event)
+          setSelected(event);
         };
+        
 
         return (
           <Form onSubmit={handleSubmit}> 
           <Form.Group>
             <Form.Label><b>Add Todo</b></Form.Label>
-            <Select className="choices" options={option} onClick={e => isChange(e.target.choice)}
-              />          
-              <Form.Control type="text" className="input" key={option.key} value={value} onChange={e => setValue(e.target.value)} placeholder="Type your task" />
+            <Select className="choices" options={option} onChange={(choise) => handleChange(choise.label)}/>
+              <Form.Control type="text" className="input" key={ud} value={value} onChange={e => setValue(e.target.value)} placeholder="Type your task" />
           </Form.Group>
-          <Button variant="primary mb-3" type="submit" >
-            Submit
+          <Button variant="primary mb-3" type="submit" > 
+            Submit 
           </Button>
         </Form>
         );
-      }
+      } 
 
 function Todos() {
 
- 
-    const addUser = n =>{
-      const newUsers = [...users, { n }]
-      setUsers(newUsers);
-    }
-
-    const [todos, setTodos] = React.useState([]);
-    const [users, setUsers] = React.useState([])
+        const [todos, setTodos] = React.useState([]);
       
-    
-        const addTodo = text =>{
-        const newTodos = [...todos, { text }];
+        const addTodo = (text, x) =>{
+        const newTodos = [...todos, { text, x }];
         setTodos(newTodos);
       }
 
-      const markTodo = i => {
+        const markTodo = i => {
         const newTodos = [...todos];
-        newTodos[i].isDone = true;
+        newTodos[ud].isDone = true;
         setTodos(newTodos);
       };
 
-      const removeTodo = i =>{
+        const removeTodo = i =>{
         const newTodos = [...todos];
         newTodos.splice(i, 1);
         setTodos(newTodos);
       };
+
   return (
     <div className='todoList'>
         <div className='container'>
-            <FormTodo addTodo={addTodo} addUser={addUser} />
+            <FormTodo addTodo={addTodo} />
             <div>
-                {todos.map((todo, i, user) =>(
+                {todos.map((todo, ud) =>(
                     <Card>
                         <Card.Body>
                             <Todo
-                            user={user}
-                            i = {i}
+                            key={ud}
+                            ud = {ud}
                             todo={todo}
                             markTodo={markTodo}
                             removeTodo={removeTodo}
