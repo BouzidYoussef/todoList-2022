@@ -19,10 +19,12 @@ var option = [
 
 function Todo ({todo, removeTodo, markTodo, i}){
           console.log(ud);
+
     return(
         <div className='todo'>
+          
                 <li className='userin' key={ud}>Task for : {todo.x}</li>   
-               <span key={ud}>{todo.text}</span>
+               <span key={ud} contenteditable="true" onDoubleClick={e => editTask(item.id, e.currentTarget.textContent)}>-{todo.text}</span>
             <div>
             <Button onClick={() => markTodo(i)}>Done</Button>{' '}
             <Button onClick={() => removeTodo(i)}>Remove</Button>
@@ -31,7 +33,9 @@ function Todo ({todo, removeTodo, markTodo, i}){
     )
 }
    function FormTodo({ addTodo}) {
-
+  
+  
+  
   const [value, setValue] = useState("");
         const handleSubmit = e => {
         e.preventDefault();
@@ -42,6 +46,10 @@ function Todo ({todo, removeTodo, markTodo, i}){
         setValue("");
         };
 
+
+
+
+
         const [selected, setSelected] = useState();
         const handleChange = (event) => {
           console.log(event)
@@ -51,7 +59,7 @@ function Todo ({todo, removeTodo, markTodo, i}){
         return (
           <Form onSubmit={handleSubmit}> 
           <Form.Group>
-            <Form.Label><b>Add Todo</b></Form.Label>
+            <Form.Label className='title-item'><b>Add Todo</b></Form.Label>
             <Select className="choices" options={option} onChange={(choise) => handleChange(choise.label)}/>
               <Form.Control type="text" className="input" key={ud} value={value} onChange={e => setValue(e.target.value)} placeholder="Type your task" />
           </Form.Group>

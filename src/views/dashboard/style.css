@@ -10,7 +10,7 @@ body{
   display: flex;
   text-decoration: none;
   justify-content: right;
-}
+font-weight: normal;}
 
 .choices {
   display: flex;
@@ -28,6 +28,9 @@ body{
   width: 47%;
 }
 
+.title-item{
+  font-weight: bolder;
+}
 
 .action-btn {
   appearance: button;
