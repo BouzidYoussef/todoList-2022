@@ -20,6 +20,8 @@ const Page404 = React.lazy(() => import('./views/pages/page404/Page404'))
 const Page500 = React.lazy(() => import('./views/pages/page500/Page500'))
 const Users = React.lazy(() => import('./views/pages/users/Users'))
 const UserInterface = React.lazy(() => import ('./views/dashboard/userInterface'))
+const TableData = React.lazy(() => import ('./views/pages/tasks/Tasks'))
+
 
 class App extends Component {
   render() {
@@ -35,6 +37,7 @@ class App extends Component {
             <Route  exact path="*" name="Home" element={<DefaultLayout />} />
             <Route  exact path="/users" name="Users" element={<Users />} />
             <Route  exact path="/user" name="User" element={<UserInterface />} />
+            <Route  exact path="/tasks" name="Tasks" element={<TableData />} />
           </Routes>
          </Suspense>
        </HashRouter>

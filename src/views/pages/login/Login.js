@@ -49,7 +49,7 @@ const Login = () => {
     const account = users.find((user) => user.username === "admin");
     if (account && account.password === password) {
       localStorage.setItem("authenticated", true);
-      navigate("/default");
+      navigate("/home");
 }
   };
   return (

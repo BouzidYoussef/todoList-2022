@@ -1,14 +1,12 @@
-import React from 'react'
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button, Card, Form} from "react-bootstrap";
-// import Spinner from 'react-bootstrap/Spinner';
-import "./style.css"
-import users from "../pages/login/Login"
-import Select from 'react-select'
+import "./style.css";
+import Select from 'react-select';
 import { FormControl } from 'react-bootstrap';
 
 
-function Todo ({todo, removeTodo, markTodo, i}){
+function Todo ({todo, removeTodo, i}){
 
     return(
         <div className='todo'>
@@ -17,7 +15,7 @@ function Todo ({todo, removeTodo, markTodo, i}){
             <div>
             <FormControl type="checkbox" class="required-entry"/>
             <label class="label">
-        <Button type="button" class="action action-show" />
+            <Button type="button" class="action action-show" />
             </label>
             <Button disabled onClick={() => removeTodo(i)}>Remove</Button>
             </div>
@@ -33,7 +31,6 @@ function Todo ({todo, removeTodo, markTodo, i}){
         addTodo(value);
         setValue("");
         };
-        const Option = [users]
 
         return (
           <Form onSubmit={handleSubmit}> 
