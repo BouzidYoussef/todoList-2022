@@ -5,17 +5,22 @@ import jsonData from './data.json';
 
 function TableData() {
   const [tasksData, setTaskData] = useState(jsonData);
-  
+  const current = new Date();
+  const moment = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+  const date = current.toLocaleTimeString()
   const tableRows = tasksData.map((info) => {
-    const current = new Date();
-    const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+   
     return (
-      <tr>
+      <tr key={info.id.toString()}>
         <td>{info.id}</td>
         <td>{info.user}</td>
         <td>{info.task}</td>
-        <td>{date}</td>
         <td>{info.description}</td>
+        <td>
+        {date}
+        <br />
+        {moment}
+        </td>
         <td>{info.status}</td>
       </tr>
     );
@@ -37,8 +42,8 @@ function TableData() {
             <th>Id</th>
             <th>User</th>
             <th>Task</th>
-            <th>Date</th>
             <th>Description</th>
+            <th>Date</th>
             <th>Status</th>
           </tr>
         </thead>
