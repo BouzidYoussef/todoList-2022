@@ -63,7 +63,7 @@ function TableData() {
         <td>
         <FormControlLabel
         control={<Android12Switch defaultChecked />}
-        label={`Switch is ${checked? 'OFF':'ON'}`}
+        label={`${checked? 'OFF':'ON'}`}
       />
         </td>
       </tr>
