@@ -5,7 +5,7 @@ import "./style.css";
 import Select from 'react-select';
 import { useState } from 'react';
 import TextField from '@mui/material/TextField';
-// import jsonData from '../pages/tasks/data.json';
+;
 
 
 
@@ -28,7 +28,7 @@ function TodoForm(props) {
   };
 
   const changeUser = (event) =>{
-    setUser(event)
+    setUser(event.label)
   };
   
   const changeDescription = (event) => {

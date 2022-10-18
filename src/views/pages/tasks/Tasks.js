@@ -8,10 +8,10 @@ function TableData() {
   const current = new Date();
   const moment = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
   const date = current.toLocaleTimeString()
-  const tableRows = tasksData.map((info) => {
-   
+  const tableRows = tasksData.map((info, i) => {
+
     return (
-      <tr key={info.id.toString()}>
+      <tr key={i}>
         <td>{info.id}</td>
         <td>{info.user}</td>
         <td>{info.task}</td>
@@ -43,7 +43,7 @@ function TableData() {
             <th>User</th>
             <th>Task</th>
             <th>Description</th>
-            <th>Date</th>
+            <th>Created At</th>
             <th>Status</th>
           </tr>
         </thead>
