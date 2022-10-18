@@ -54,7 +54,7 @@ function TodoForm(props) {
   return (
     <div>
       <label>User:</label>
-      <Select className="choices" options={option} value={user} onChange={changeUser}/>
+      <Select className="choices" options={option}  onChange={changeUser}/>
       <label>Task:</label>
       <TextField className='input-mui' type="text" value={task} onChange={changeTask} autoFocus variant="outlined" />
       <label>Description:</label>
