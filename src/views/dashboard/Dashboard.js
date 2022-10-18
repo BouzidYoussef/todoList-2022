@@ -5,7 +5,7 @@ import "./style.css";
 import Select from 'react-select';
 import { useState } from 'react';
 import TextField from '@mui/material/TextField';
-;
+import TableData from '../pages/tasks/Tasks';
 
 
 
@@ -37,7 +37,7 @@ function TodoForm(props) {
   
   const transferValue = (event) => {
     event.preventDefault();
-    const val = {
+    const val = { 
       task,
       description,
       user
@@ -54,7 +54,7 @@ function TodoForm(props) {
   return (
     <div>
       <label>User:</label>
-      <Select className="choices" options={option}  onChange={changeUser}/>
+      <Select className="choices" options={option}  onChange={changeUser} autoFocus/>
       <label>Task:</label>
       <TextField className='input-mui' type="text" value={task} onChange={changeTask} autoFocus variant="outlined" />
       <label>Description:</label>
