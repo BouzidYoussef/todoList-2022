@@ -4,12 +4,11 @@ import jsonData from './data.json';
 import Switch from '@mui/material/Switch';
 import { styled } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
-
+import {CTable, CTableHead, CTableRow, CTableHeaderCell, CTableBody, CTableDataCell} from '@coreui/react';
 
 
 function TableData() {
 
-const [checked] = React.useState(false)
 
   const IOSSwitch = styled((props) => (
     <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -69,22 +68,22 @@ const [checked] = React.useState(false)
   const tableRows = tasksData.map((info, i) => {
     
     return (
-      <tr key={i}>
-        <td>{info.id}</td>
-        <td>{info.user}</td>
-        <td>{info.task}</td>
-        <td>{info.description}</td>
-        <td>
-        {date}
-        <br />
-        {moment}
-        </td>
-        <td>
+      <CTableBody>
+      <CTableRow key={i}>
+        <CTableHeaderCell scope="row">{info.id}</CTableHeaderCell>
+        <CTableDataCell>{info.user}</CTableDataCell>
+        <CTableDataCell>{info.task}</CTableDataCell>
+        <CTableDataCell>{info.description}</CTableDataCell>
+        <CTableDataCell>
+          {date}
+          <br />
+          {moment}
+        </CTableDataCell>
         <FormControlLabel
-        control={<IOSSwitch sx={{ m: 1 }} label={checked? "yes" : "no"} />}
+        control={<IOSSwitch sx={{ m: 1 }} />}
       />
-        </td>
-      </tr>
+      </CTableRow>
+    </CTableBody>
     );
   });
   
@@ -97,22 +96,16 @@ const [checked] = React.useState(false)
   };
   
   return (
-    <div>
-      <table className="table table-stripped">
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>User</th>
-            <th>Task</th>
-            <th>Description</th>
-            <th>Created At</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>{tableRows}</tbody>
-      </table>
-      <Todos func={addRows} />
-    </div>
+      <><CTable striped>
+      <CTableHead>
+        <CTableRow>
+          <CTableHeaderCell scope="col">#</CTableHeaderCell>
+          <CTableHeaderCell scope="col">Class</CTableHeaderCell>
+          <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
+          <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
+        </CTableRow>
+      </CTableHead>
+    </CTable><CTableBody>{tableRows}</CTableBody><Todos func={addRows} /></>
   );
 }
 export default TableData;
