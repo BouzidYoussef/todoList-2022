@@ -9,6 +9,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 
 function TableData() {
 
+const [checked] = React.useState(false)
+
   const IOSSwitch = styled((props) => (
     <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
   ))(({ theme }) => ({
@@ -65,7 +67,7 @@ function TableData() {
   const moment = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
   const date = current.toLocaleTimeString()
   const tableRows = tasksData.map((info, i) => {
-
+    
     return (
       <tr key={i}>
         <td>{info.id}</td>
@@ -79,7 +81,7 @@ function TableData() {
         </td>
         <td>
         <FormControlLabel
-        control={<IOSSwitch sx={{ m: 1 }}  />}
+        control={<IOSSwitch sx={{ m: 1 }} label={checked? "yes" : "no"} />}
       />
         </td>
       </tr>

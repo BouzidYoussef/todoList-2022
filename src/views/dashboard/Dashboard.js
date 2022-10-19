@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button} from "react-bootstrap";
 import "./style.css";
@@ -23,6 +23,8 @@ function TodoForm(props) {
   const [description, setDescription] = useState('');
   const [user, setUser] = useState('');
 
+  
+
   const changeTask = (event) => {
     setTask(event.target.value);
   };
@@ -41,7 +43,7 @@ function TodoForm(props) {
       task,
       description,
       user
-    };
+    }
     props.func(val);
     clearState();
   };
@@ -53,11 +55,11 @@ function TodoForm(props) {
   
   return (
     <div>
-      <label>User:</label>
+      <label>User: </label>
       <Select className="choices" options={option}  onChange={changeUser} autoFocus/>
-      <label>Task:</label>
+      <label>Task: </label>
       <TextField className='input-mui' type="text" value={task} onChange={changeTask} autoFocus variant="outlined" />
-      <label>Description:</label>
+      <label>Description: </label>
       <TextField className='input-mui' type="text" value={description} onChange={changeDescription} autoFocus  variant="outlined"/>
       <Button onClick={transferValue} autoFocus variant='primary' type="submit">Submit</Button>
     </div>
