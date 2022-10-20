@@ -3,7 +3,7 @@ import Todos from "src/views/dashboard/Dashboard";
 import jsonData from './data.json';
 import {CTable, CTableHead, CTableRow, CTableHeaderCell, CTableBody, CTableDataCell} from '@coreui/react';
 import { Button} from 'react-bootstrap';
-
+import '../tasks/Tasks.css';
 
 
 function TableData() {
@@ -11,24 +11,24 @@ function TableData() {
   const [tasksData, setTaskData] = useState(jsonData);
   const current = new Date();
   const moment = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
-  const date = current.toLocaleTimeString()
+  const date = current.toLocaleTimeString();
   const tableRows = tasksData.map((info, i) => {
     
     return (
-      <CTableBody color="light">
-      <CTableRow key={info.id}>
-        <CTableHeaderCell scope="row">{info.id}</CTableHeaderCell>
-        <CTableDataCell className="row-row">{info.user}</CTableDataCell>
-        <CTableDataCell className="row-row">{info.task}</CTableDataCell>
-        <CTableDataCell className="row-row">{info.description}</CTableDataCell>
-        <CTableDataCell className="row-row">
+      <CTableBody className="table" color="light">
+      <CTableRow className="tr" key={info.i}>
+        <CTableDataCell className="th">{info.id}</CTableDataCell>
+        <CTableDataCell className="th">{info.user}</CTableDataCell>
+        <CTableDataCell className="th">{info.task}</CTableDataCell>
+        <CTableDataCell className="th">{info.description}</CTableDataCell>
+        <CTableDataCell className="th">
           {date}
           <br />
           {moment}
         </CTableDataCell>
         <CTableDataCell>
-        <Button className="row-row" variant="outline-success" onClick={() => markTodo(i)}>✓</Button>{' '}
-        <Button className="row-row" variant="outline-danger" onClick={() => removeTodo(i)}>✕</Button>
+        <Button className="th" variant="outline-success" onClick={() => markTodo(i)}>✓</Button>{' '}
+        <Button className="th" variant="outline-danger" onClick={() => removeTodo(i)}>✕</Button>
         </CTableDataCell>
       </CTableRow>
     </CTableBody>
@@ -41,13 +41,16 @@ function TableData() {
     setTaskData(newTodos);
   };
 
+  // const addTimer = index =>{
+  //   const newTime = [...]
+  // }
 
   const removeTodo = index => {
     const newTodos = [...tasksData];
     newTodos.splice(index, 1);
     setTaskData(newTodos);
   };
-  
+      
   const addRows = (data) => {
     const totalTasks = tasksData.length;
     data.id = totalTasks + 1;
