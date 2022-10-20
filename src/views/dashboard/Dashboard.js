@@ -5,9 +5,6 @@ import "./style.css";
 import Select from 'react-select';
 import { useState } from 'react';
 import TextField from '@mui/material/TextField';
-import TableData from '../pages/tasks/Tasks';
-
-
 
 var option = [
   { value: 'youssef', label: 'Youssef', key:1 },
@@ -22,8 +19,6 @@ function TodoForm(props) {
   const [task, setTask] = useState('');
   const [description, setDescription] = useState('');
   const [user, setUser] = useState('');
-
-  
 
   const changeTask = (event) => {
     setTask(event.target.value);

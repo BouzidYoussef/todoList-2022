@@ -10,7 +10,7 @@ function TableData() {
 
   const [tasksData, setTaskData] = useState(jsonData);
   const current = new Date();
-  const moment = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+  const [moment, setMoment] = useState(`${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`);
   const date = current.toLocaleTimeString();
   const tableRows = tasksData.map((info, i) => {
     
@@ -26,9 +26,9 @@ function TableData() {
           <br />
           {moment}
         </CTableDataCell>
-        <CTableDataCell>
-        <Button className="th" variant="outline-success" onClick={() => markTodo(i)}>✓</Button>{' '}
-        <Button className="th" variant="outline-danger" onClick={() => removeTodo(i)}>✕</Button>
+        <CTableDataCell className="th">
+        <Button variant="outline-success" onClick={() => markTodo(i)}>✓</Button>{' '}
+        <Button variant="outline-danger" onClick={() => removeTodo(i)}>✕</Button>
         </CTableDataCell>
       </CTableRow>
     </CTableBody>
@@ -40,10 +40,6 @@ function TableData() {
     newTodos[index].isDone = true;
     setTaskData(newTodos);
   };
-
-  // const addTimer = index =>{
-  //   const newTime = [...]
-  // }
 
   const removeTodo = index => {
     const newTodos = [...tasksData];
