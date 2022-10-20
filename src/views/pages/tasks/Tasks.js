@@ -10,7 +10,7 @@ function TableData() {
 
   const [tasksData, setTaskData] = useState(jsonData);
   const current = new Date();
-  const [moment, setMoment] = useState(`${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`);
+  const moment = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
   const date = current.toLocaleTimeString();
   const tableRows = tasksData.map((info, i) => {
     
